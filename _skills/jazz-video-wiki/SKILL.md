@@ -1,56 +1,76 @@
 ---
 name: jazz-video-wiki
-description: Process a jazz tutorial transcript (TSV file) into an Obsidian wiki note. Use this skill whenever a new video has been scraped and you need to generate or regenerate a wiki note for it. Triggers on phrases like "add video [ID] to the wiki", "process transcript for [ID]", "generate wiki note for [video]", or "new transcript ready".
+description: Process a jazz tutorial transcript (TSV file) into an Obsidian wiki note, create all entity pages, then add wiki links. Use whenever a new video has been scraped and needs to be added to the wiki. Triggers on phrases like "add video [ID] to the wiki", "process transcript for [ID]", "generate wiki note for [video]", or "new transcript ready".
 ---
 
-# Jazz Video Wiki — Transcript → Wiki Note
+# Jazz Video Wiki — Full Pipeline: Transcript → Wiki Note + Entity Pages + Links
 
-This skill turns a single transcript TSV file into a structured Obsidian wiki note for the jazz tutorial knowledge base.
+This skill processes one video end-to-end:
+1. Writes the video note
+2. Creates any missing entity pages (concepts, songs, personas)
+3. Adds `[[wiki links]]` into the video note prose — only for entities that now have pages
+
+**Never add a `[[link]]` to a page that does not exist. Entity pages must be created first.**
+
+---
 
 ## Paths
 
 - **Transcripts:** `scraping/openstudio/tts/{VIDEO_ID}.tsv`
-- **Metadata:** `scraping/openstudio/metadata.json` — contains real video titles from yt-dlp
-- **Wiki output:** `jazzwiki/videos/{VIDEO_ID}.md`
-- **Base YouTube URL:** `https://www.youtube.com/watch?v={VIDEO_ID}`
+- **Metadata:** `scraping/openstudio/metadata.json` — real video titles from yt-dlp
+- **Wiki videos:** `jazzwiki/videos/{VIDEO_ID}.md`
+- **Wiki concepts:** `jazzwiki/concepts/{Name}.md`
+- **Wiki songs:** `jazzwiki/songs/{Title}.md`
+- **Wiki personas:** `jazzwiki/personas/{Name}.md`
 
-Both paths are relative to the jazz-tutorials workspace root.
+All paths relative to the jazz-tutorials workspace root.
+
+---
 
 ## Step 1 — Get the video title
 
-Look up the VIDEO_ID in `scraping/openstudio/metadata.json`. If found, use the `title` field and set `title_source: yt-dlp`. If not found, infer the title from the first 30 lines of the transcript and set `title_source: inferred`.
+Look up the VIDEO_ID in `scraping/openstudio/metadata.json`. Use the `title` field → `title_source: yt-dlp`. If not found, infer from first 30 TSV rows → `title_source: inferred`.
+
+---
 
 ## Step 2 — Read the COMPLETE transcript
 
-**Read every single row of the TSV.** Columns: `start_ms`, `end_ms`, `text`.
+Read **every single row** of the TSV. Columns: `start_ms`, `end_ms`, `text`.
 
-- Duration = the `end_ms` value of the **last row** in the file
-- Do not stop reading early. Do not skim. The last sections of long videos are where the most important advanced content lives.
+- Duration = `end_ms` of the **last row**
+- Do not stop reading early. The last sections of a video often contain the most advanced content.
 
-## Step 3 — Identify section boundaries from the TSV
+---
 
-Before writing anything, scan the full TSV and identify 8–14 natural section boundaries (topic shifts, level introductions, exercise changes, etc.).
+## Step 3 — Identify section boundaries
 
-**For each section boundary, record the EXACT `start_ms` of the TSV row where it first appears.**
+Scan the full TSV and identify 8–14 natural topic boundaries. For each, record the **exact `start_ms`** of the TSV row where that topic first appears. Search TSV text for key phrases — do not estimate.
 
-Do this by searching the TSV text for key phrases. For example:
-- If Level 2 starts when a row says "What's level two", the section's `start_ms` is that row's value.
-- If an exercise starts when a row says "Let's try this", the section's `start_ms` is that row's value.
+**Timestamp formula:**
+- `total_seconds = start_ms ÷ 1000` (integer)
+- Display: `MM:SS`
+- YouTube link: `https://www.youtube.com/watch?v={VIDEO_ID}&t={total_seconds}s`
 
-**NEVER estimate or interpolate a timestamp.** If you cannot find the exact row, use the nearest row whose text clearly marks the transition.
+**Every timestamp must come from an actual TSV row's `start_ms`. No exceptions.**
 
-## Step 4 — Timestamp formula
+---
 
-For any `start_ms` value from the TSV:
-- Total seconds = `start_ms ÷ 1000` (integer division, discard remainder)
-- Display: `MM:SS` — e.g. 838000ms → 838s → 13:58
-- YouTube deep-link: `https://www.youtube.com/watch?v={VIDEO_ID}&t={total_seconds}s`
+## Step 4 — Extract entities
 
-**Every timestamp in the output MUST be derived from an actual TSV row's `start_ms`. Zero exceptions.**
+While reading, collect:
+- **Concepts** — musical ideas, techniques, frameworks introduced or named
+- **Tunes** — songs and standards referenced by name
+- **Personas** — musicians and educators mentioned by name
 
-## Step 5 — Write the wiki note
+For each entity, also note:
+- The **first TSV row** where it is meaningfully mentioned → record `start_ms`
+- A brief description of how it appears in this video (for the Appearances entry)
 
-Use this exact structure:
+---
+
+## Step 5 — Write the video note (without wiki links yet)
+
+Use this structure. Do not add `[[links]]` in the transcript yet — that happens in Step 7 after entity pages exist.
 
 ```markdown
 ---
@@ -74,74 +94,137 @@ type: guided-practice | lesson | analysis | interview
 2–3 sentences: what is taught, for whom, and why it matters.
 
 ## Tunes & Standards Referenced
-- *[[Tune Name]]* (composer if mentioned) — how it's used in the lesson
+- *Tune Name* (composer if mentioned) — how it's used
+(No [[links]] here yet — added in Step 7)
 
 ## Musicians & Influences Referenced
-- [[Person Name]] — context in which they're mentioned
+- Person Name — context
+(No [[links]] here yet — added in Step 7)
 
 ## Concepts Introduced
-- [[Concept Name]] — one-line description of how it's framed here
-(All concepts use Obsidian [[double-bracket]] wiki links)
+- [[Concept Name]] — one-line description
+(Links here are fine — concept names are canonical identifiers)
 
 ## Practice Notes
-Specific instructions the instructor gives: tempo, key, repetitions, what to listen for, etc.
+Tempo, key, repetitions, what to listen for — specific instructor guidance only.
 
 ## Transcript
 
 ### [MM:SS] Section Title — [▶](https://www.youtube.com/watch?v=VIDEO_ID&t=Xs)
-[MM:SS](https://www.youtube.com/watch?v=VIDEO_ID&t=Xs) Textbook-style prose describing
-what happens in this section. Third person. Keep close to the instructor's original phrasing
-but remove filler, repetitions, YouTube engagement requests, and conversational asides.
-Do not describe what is being played — write about what is being explained or taught.
 
-Multiple timestamp paragraphs can appear under one section heading when the topic
-continues across several minutes. Each paragraph starts with its own timestamp link.
+[MM:SS](https://www.youtube.com/watch?v=VIDEO_ID&t=Xs) Textbook-style prose in third person.
+Keep close to the instructor's phrasing. Remove filler, repetition, YouTube engagement,
+and purely conversational asides. Focus on what is being taught, not what is being played.
+No note names, no fingering analysis.
 
-### [MM:SS] Next Section — [▶](https://www.youtube.com/watch?v=VIDEO_ID&t=Xs)
-...
+Multiple paragraphs per section are fine. Each paragraph starts with its timestamp link.
 ```
 
-The `## Transcript` section replaces both the old `## Lesson Plan` and `## Transcript` sections.
-Section headings provide structure; timestamped prose paragraphs provide detail.
-Aim for 8–14 sections covering the full video.
+---
 
-## Step 6 — Add inline wiki links throughout the note
+## Step 6 — Create entity pages
 
-After drafting the full note, go back through the text and add `[[double-bracket]]` links wherever a concept, tune, or musician is mentioned by name:
+For each entity collected in Step 4, check whether its page already exists.
 
-- **Concepts** — whenever a concept from `## Concepts Introduced` is named in the transcript prose, wrap it: e.g. "broken groups" → `[[Broken Groups]]`
-- **Tunes** — whenever a tune name appears in prose, wrap it: e.g. "Lady Bird" → `[[Lady Bird]]`
-- **Personas** — whenever a musician's name appears in prose, wrap it: e.g. "Herbie Hancock" → `[[Herbie Hancock]]`
+**If it does not exist → create it now.** Use the templates below.
+
+**If it already exists → append a new bullet to its `## Appearances` section.**
+
+### Appearances entry format
+
+```
+- **[[../videos/VIDEO_ID|Video Title]]** [▶ MM:SS](https://www.youtube.com/watch?v=VIDEO_ID&t=Xs) — one sentence describing how this entity appears in the video
+```
+
+The `[▶ MM:SS]` timestamp comes from the entity's first-mention `start_ms` recorded in Step 4.
+
+### Concept page template
+
+```markdown
+---
+type: concept
+tags: [tag1, tag2]
+---
+
+# Concept Name
+
+2–5 sentence explanation: what this concept is, why it matters, how it relates to jazz.
+No note names or fingerings.
+
+## Appearances
+
+- **[[../videos/VIDEO_ID|Video Title]]** [▶ MM:SS](https://www.youtube.com/watch?v=VIDEO_ID&t=Xs) — context in this video
+```
+
+### Song page template
+
+```markdown
+---
+type: song
+composer: Name
+tags: [jazz-standard]
+---
+
+# Song Title
+
+2–4 sentence description: composer, era, what makes it harmonically notable.
+
+## Appearances
+
+- **[[../videos/VIDEO_ID|Video Title]]** [▶ MM:SS](https://www.youtube.com/watch?v=VIDEO_ID&t=Xs) — how it's used
+```
+
+### Persona page template
+
+```markdown
+---
+type: persona
+role: pianist | saxophonist | etc.
+era: bebop | post-bop | etc.
+tags: [tag1, tag2]
+---
+
+# Person Name
+
+3–5 factual sentences: instrument, era, contribution to jazz. No invented details.
+
+## Appearances
+
+- **[[../videos/VIDEO_ID|Video Title]]** [▶ MM:SS](https://www.youtube.com/watch?v=VIDEO_ID&t=Xs) — context
+```
+
+---
+
+## Step 7 — Add [[wiki links]] to the video note
+
+Now that all entity pages exist, go back through the saved video note and add `[[links]]` in the prose:
+
+- In `## Tunes & Standards Referenced`: wrap each tune name → `*[[Tune Name]]*`
+- In `## Musicians & Influences Referenced`: wrap each name → `[[Person Name]]`
+- In `## Transcript` prose: on the **first mention** of any entity in each section paragraph, wrap it
 
 Rules:
-- Link on **first mention** in each section; subsequent mentions in the same paragraph can remain plain text.
-- The link text must match the entity page filename exactly (case-sensitive).
-- Do not link generic terms that are not entity page titles (e.g. "jazz" or "scales" are not links unless there is a specific page for them).
-- In `## Tunes & Standards Referenced` and `## Musicians & Influences Referenced`, every name should already be linked. Check this.
+- **Only link to pages that exist.** If no page was created for something, do not link it.
+- Match the exact filename (case-sensitive, spaces as-is).
+- In `## Concepts Introduced`, links are already there from Step 5 — verify they match actual filenames.
+- Do not link the same entity more than once per paragraph.
+- Do not link generic terms that are not entity page titles.
 
-## Step 7 — Record first-mention timestamps for entity pages
-
-For each concept, tune, and persona identified in the note, find the **first TSV row** where that entity is meaningfully mentioned. Record the `start_ms` of that row. This will be used by the entity-pages skill to add YouTube deep-links to Appearances entries.
-
-Output a quick summary at the end (not written to the file):
-```
-Entity first-mention timestamps (VIDEO_ID):
-- [[Pentatonic Scales]]: 154000ms → 2:34 → &t=154s
-- [[Herbie Hancock]]: 569000ms → 9:29 → &t=569s
-...
-```
+---
 
 ## What NOT to do
 
-- **Do not invent or guess timestamps.** Every `[MM:SS]` and `&t=Xs` value must come from an actual TSV row's `start_ms`. If you're writing a timestamp and you haven't looked up the corresponding TSV row, stop and look it up.
-- Do not transcribe or analyse specific notes, chord fingerings, or note names. Focus on what is being taught and why, not what specific pitches are being played.
-- Do not include purely musical demonstration passages in the transcript.
-- Do not invent content. If something is unclear in the transcript, write around it or omit it.
+- **Never add a `[[link]]` without first confirming the target page exists.**
+- Never invent or estimate timestamps — every `[MM:SS]` must come from a TSV row's `start_ms`.
+- Never transcribe specific note names, chord fingerings, or interval sequences.
+- Never invent biographical or musical facts.
 
-## Mandatory quality checks before saving the file
+---
 
-1. **Duration:** frontmatter `duration` matches `end_ms` of the final TSV row.
-2. **Timestamp accuracy:** For each section heading and each inline `[MM:SS]` timestamp, confirm you can point to the specific TSV row whose `start_ms` equals that time. If you cannot, fix it before saving.
-3. **Coverage:** Transcript section headings span from near 0:00 to near the video's end. No large gaps (> 5 minutes undocumented).
-4. **`title_source`:** accurately reflects whether the title came from metadata.json or was inferred.
-5. **Wiki links:** Every concept, tune, and persona from the structured sections also appears linked (at least once) in the transcript prose where relevant.
+## Quality checks before finishing
+
+1. **Duration** in frontmatter matches last TSV row's `end_ms`.
+2. Every `[MM:SS]` timestamp traces to a real TSV row.
+3. Every `[[link]]` in the note has a corresponding file in the wiki.
+4. Transcript spans from near 0:00 to near the video's end with no gaps > 5 minutes.
+5. Entity pages all have the correct `[▶ MM:SS]` deep-link in their Appearances entry.

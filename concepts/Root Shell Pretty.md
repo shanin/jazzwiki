@@ -1,12 +1,12 @@
 ---
 type: concept
-tags: [voicings, piano-technique, harmony]
+tags: [voicing-systems, piano-technique]
 ---
 
 # Root Shell Pretty
 
-A three-layer framework for constructing chord voicings on the piano, from the bottom up: the **root** (which anchors the harmony), the **shell** (the third and seventh, which define chord quality), and a single **pretty note** (an extension — fifth, ninth, eleventh, or thirteenth — chosen to add colour without crowding the harmony). The principle is that one pretty note is enough: doubling it or adding more muddies the voicing.
+Root Shell Pretty is a systematic framework for constructing rooted voicings on piano, built from bottom to top in three layers. The root anchors the harmonic foundation at the bottom; the shell refers to the third and/or seventh of the chord (the essential guide tones that define its quality); and the pretty note is a melodic extension (typically the fifth, ninth, eleventh, or thirteenth) selected to complement the melody and add color. This structure ensures clarity and harmonic function while allowing flexibility in the choice of upper extensions.
 
 ## Appearances
 
-- **[[../videos/-ktm1Q0odH8|Three Jazz Piano Voicing Structures for Lady Bird]]** [▶ 1:57](https://www.youtube.com/watch?v=-ktm1Q0odH8&t=117s) — introduced as the foundational system for solo-piano rooted voicings. Applied to every chord in *Lady Bird*, with the melody in the fourth and fifth fingers of the right hand and the root held in the left.
+- **[[../videos/-ktm1Q0odH8|Voicing A Standard]]** [▶ 02:05](https://www.youtube.com/watch?v=-ktm1Q0odH8&t=125s) — foundational voicing technique introduced for solo piano application with detailed harmonic analysis

@@ -1,12 +1,12 @@
 ---
 type: concept
-tags: [piano-technique, voicings, solo-piano]
+tags: [texture, voicing-systems, hand-position]
 ---
 
 # Three-Zone Concept
 
-A spatial framework for solo piano that divides the keyboard — and the two hands — into three functional regions: the **bottom zone** (left hand, roots), the **top zone** (upper right-hand fingers, melody), and the **middle zone** (the remaining six fingers of both hands, chord voicing). Keeping these three layers cleanly separated allows a pianist to play melody, harmony, and bass simultaneously without the registers bleeding into each other.
+The Three-Zone Concept divides the piano into three distinct textural regions to create a balanced, full sound. The lowest zone holds the root of the chord in the left hand; the middle zone contains the chord voicing (the six fingers between the two hands); and the highest zone features the melody in the right hand. This organization ensures clarity of harmonic function while allowing the melody to sit clearly above rich accompaniment texture, creating professional-sounding solo piano textures.
 
 ## Appearances
 
-- **[[../videos/-ktm1Q0odH8|Three Jazz Piano Voicing Structures for Lady Bird]]** [▶ 3:15](https://www.youtube.com/watch?v=-ktm1Q0odH8&t=195s) — used to explain how the rooted voicing system physically distributes across the hands: the fourth and fifth fingers of the right hand carry the melody, the left hand holds the root, and the remaining fingers fill in the shell and pretty note in the middle register.
+- **[[../videos/-ktm1Q0odH8|Voicing A Standard]]** [▶ 05:04](https://www.youtube.com/watch?v=-ktm1Q0odH8&t=304s) — described as a textural framework for rooted solo piano voicings to achieve separation between root, chord, and melody zones

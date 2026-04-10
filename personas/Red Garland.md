@@ -1,14 +1,14 @@
 ---
 type: persona
 role: pianist
-era: hard-bop
-tags: [jazz-piano, hard-bop, Miles Davis Quintet]
+era: bebop
+tags: [pianist, bebop]
 ---
 
 # Red Garland
 
-William "Red" Garland (1923–1984) was an American jazz pianist known primarily for his work with the Miles Davis Quintet in the mid-to-late 1950s. His style is characterised by block-chord playing in the right hand, a light but swinging left-hand bass, and a particular rhythmic comping feel that anticipates chord changes a half-beat early — placing voicings on beat 4 or beat 2 just before the change lands.
+Red Garland was a pioneering bebop pianist known for his distinctive comping style and rhythmic approach. His playing influenced generations of jazz pianists, and his harmonic and rhythmic innovations became foundational elements of modern jazz piano. His characteristic rhythm patterns, particularly his approach to anticipating chord changes, remain popular reference points for teaching ensemble playing.
 
 ## Appearances
 
-- **[[../videos/-ktm1Q0odH8|Three Jazz Piano Voicing Structures for Lady Bird]]** [▶ 18:33](https://www.youtube.com/watch?v=-ktm1Q0odH8&t=1113s) — his rhythmic comping approach (anticipating the chord on beat 4 and beat 2) is cited as the ideal groove template for integrating both rootless and magic voicings into the rhythm. Maness performs two choruses of *Lady Bird* with each system using this feel.
+- **[[../videos/-ktm1Q0odH8|Voicing A Standard]]** [▶ 18:32](https://www.youtube.com/watch?v=-ktm1Q0odH8&t=1112s) — rhythm style referenced for comping applications; the Red Garland rhythm pattern (anticipating changes on beat 4) is recommended for locking in the groove

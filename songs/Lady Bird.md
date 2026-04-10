@@ -1,13 +1,13 @@
 ---
 type: song
-composer: Tadd Dameron
+composer: Tad Dameron
 tags: [jazz-standard, bebop]
 ---
 
 # Lady Bird
 
-A jazz standard composed by **Tadd Dameron** in 1939, recorded and popularised through Dameron's association with Coleman Hawkins. The chord changes — featuring a characteristic IV→♭VII→I "backdoor" cadence — make it a favourite vehicle for harmonic exploration. The form is a 16-bar AABA.
+"Lady Bird" is a jazz standard composed by Tad Dameron, featuring a sophisticated harmonic structure that makes it ideal for exploring diverse voicing approaches. The composition's chord changes provide a comprehensive study ground, moving through major, minor, and dominant sonorities with both diatonic and chromatic movement. The tune's popularity in the jazz repertoire and its harmonic richness have made it a standard choice for pianists developing their voicing vocabulary.
 
 ## Appearances
 
-- **[[../videos/-ktm1Q0odH8|Three Jazz Piano Voicing Structures for Lady Bird]]** [▶ 0:24](https://www.youtube.com/watch?v=-ktm1Q0odH8&t=24s) — serves as the primary learning vehicle for the entire lesson. All three voicing systems (rooted, rootless left-hand, magic) are demonstrated and practiced through the changes of *Lady Bird*. A downloadable PDF with all three systems mapped to the tune's changes is mentioned.
+- **[[../videos/-ktm1Q0odH8|Voicing A Standard]]** [▶ 00:39](https://www.youtube.com/watch?v=-ktm1Q0odH8&t=23s) — used as the primary harmonic framework for demonstrating three distinct chord voicing structures applied across all three pianist roles
