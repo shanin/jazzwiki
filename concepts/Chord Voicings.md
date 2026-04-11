@@ -1,6 +1,7 @@
 ---
 type: concept
 tags: [piano-technique, jazz-fundamentals]
+sources: [KSocqJrAKxQ]
 ---
 
 # Chord Voicings
@@ -10,3 +11,4 @@ Chord voicings are the art of arranging the tones of a chord across different re
 ## Appearances
 
 - **[[../videos/-ktm1Q0odH8|Voicing A Standard]]** [▶ 00:16](https://www.youtube.com/watch?v=-ktm1Q0odH8&t=1s) — comprehensive exploration of three distinct voicing structures adapted to different ensemble roles
+- **[[../videos/KSocqJrAKxQ|Bill Evans Chords | Guided Practice Session™ with Adam Maness]]** [▶ 0:00](https://www.youtube.com/watch?v=KSocqJrAKxQ&t=0s) — demonstrates Bill Evans-style four-way close voicings and their application across multiple keys and harmonic contexts

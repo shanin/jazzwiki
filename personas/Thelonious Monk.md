@@ -3,7 +3,7 @@ type: persona
 role: pianist, composer
 era: bebop, post-bop, hard-bop
 tags: [composer, pianist, master-of-rhythm]
-sources: [rEdtUOGCCnU]
+sources: [rEdtUOGCCnU, RK2eqkh4Yko]
 ---
 
 # Thelonious Monk
@@ -13,3 +13,4 @@ Thelonious Monk was a pioneering jazz pianist and composer whose approach to rhy
 ## Appearances
 
 - **[[../videos/rEdtUOGCCnU|Why Do I Still Suck?]]** [▶ 03:58](https://www.youtube.com/watch?v=rEdtUOGCCnU&t=238s) — identified as the primary model for modern rhythmic vocabulary, with two of his compositions used as templates for developing rhythmic vocabulary
+- **[[../videos/RK2eqkh4Yko|How To Play Tunes Using Small Chords]]** [▶ 23:11](https://www.youtube.com/watch?v=RK2eqkh4Yko&t=1391s) — referenced regarding his nomenclature for minor 7 flat 5 chords; Barry Harris called the voicing (F minor over D) a "Monk" voicing, illustrating how traditional musicians understood sixth chord structures
