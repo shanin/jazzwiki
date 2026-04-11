@@ -10,9 +10,19 @@ This skill reads video notes from `jazzwiki/videos/` and maintains three entity 
 - `jazzwiki/songs/` — tunes and standards
 - `jazzwiki/personas/` — musicians and educators
 
+## Important: summaries improve over time
+
+Concept (and song) summaries written from a single video are inherently limited — they reflect only one instructor's framing at one moment. As more videos are processed, descriptions should be revised to be more complete, accurate, and context-independent.
+
+**Do not treat existing summaries as authoritative.** If a new video offers a clearer, broader, or corrective framing of a concept, update the summary to reflect that.
+
+---
+
 ## When to run
 
 After one or more new video notes have been added (via the `jazz-video-wiki` skill or manually), run this skill to ensure every entity mentioned in those notes has a page, and every existing entity page has an updated Appearances section.
+
+---
 
 ## Step 1 — Collect entities from target video notes
 
@@ -23,29 +33,39 @@ For each target video note, extract:
 
 Also note the video's `video_id` from the frontmatter.
 
+---
+
 ## Step 2 — Find first-mention timestamps from the TSV
 
-For each extracted entity, search the TSV file at `scraping/openstudio/tts/{VIDEO_ID}.tsv` for the **first row** where the entity is meaningfully mentioned. Record the `start_ms` of that row.
+For each extracted entity, search `scraping/openstudio/tts/{VIDEO_ID}.tsv` for the **first row** where the entity is meaningfully mentioned. Record the `start_ms` of that row.
 
-Convert to YouTube deep-link: `https://www.youtube.com/watch?v={VIDEO_ID}&t={start_ms // 1000}s`
+YouTube deep-link: `https://www.youtube.com/watch?v={VIDEO_ID}&t={start_ms // 1000}s`
 
-This timestamp link will appear in the entity's Appearances entry. It should point to the moment in the video where the entity is first introduced or named.
+If the entity structures the whole video, use the timestamp where it's first explicitly named.
 
-If the entity is present throughout (e.g. a concept that structures the whole video), use the timestamp where it's first explicitly named or introduced.
+---
 
 ## Step 3 — For each entity, create or update its page
 
 ### If the page does not exist — create it
 
-**Concepts** → `jazzwiki/concepts/{Concept Name}.md`
-**Songs** → `jazzwiki/songs/{Song Title}.md`
-**Personas** → `jazzwiki/personas/{Person Name}.md`
+Use the templates below. Set `sources: [VIDEO_ID]` in frontmatter.
 
-Use the templates below.
+### If the page already exists — update it
 
-### If the page already exists — append to Appearances
+Do two things:
 
-Add a new bullet to the `## Appearances` section. Do not rewrite the summary or existing appearances. Only add what's new.
+**A. Revise the summary if warranted.**
+Read the existing summary. Read how the concept is framed in the new video. Ask:
+- Does the new video present this concept more completely or accurately?
+- Does it correct a partial or video-specific framing?
+- Does it broaden the definition beyond a single use case?
+
+If yes to any of these: rewrite the summary to incorporate the improved understanding. Add the new `VIDEO_ID` to the `sources` list in frontmatter.
+
+If the existing summary is already accurate and the new video just uses the concept in a similar way: leave the summary as-is, just add the new source and new Appearances bullet.
+
+**B. Append a new bullet to `## Appearances`.**
 
 ---
 
@@ -57,15 +77,18 @@ Add a new bullet to the `## Appearances` section. Do not rewrite the summary or 
 ---
 type: concept
 tags: [tag1, tag2]
+sources: [VIDEO_ID]
 ---
 
 # Concept Name
 
 A clear, concise explanation of what this concept is — what it does, why it matters, and how it relates to jazz broadly. Write for someone who knows jazz but may not know this specific term. 2–5 sentences. Do not analyse specific notes or fingerings.
 
+*Based on N video(s). Description may be refined as more sources are added.*
+
 ## Appearances
 
-- **[[../videos/VIDEO_ID|Video Title]]** [▶ MM:SS](https://www.youtube.com/watch?v=VIDEO_ID&t=Xs) — how this concept was introduced and used in that lesson. Reference the specific exercise, context, or framing from the video note.
+- **[[../videos/VIDEO_ID|Video Title]]** [▶ MM:SS](https://www.youtube.com/watch?v=VIDEO_ID&t=Xs) — how this concept was introduced and used in that lesson.
 ```
 
 ### Song page
@@ -74,16 +97,19 @@ A clear, concise explanation of what this concept is — what it does, why it ma
 ---
 type: song
 composer: Composer Name
-tags: [jazz-standard, bebop]
+tags: [jazz-standard]
+sources: [VIDEO_ID]
 ---
 
 # Song Title
 
-Brief description: composer, approximate date, notable recordings, what makes the tune harmonically or structurally distinctive. 2–4 sentences.
+Brief description: composer, era, what makes the tune harmonically or structurally notable. 2–4 sentences.
+
+*Based on N video(s). Description may be refined as more sources are added.*
 
 ## Appearances
 
-- **[[../videos/VIDEO_ID|Video Title]]** [▶ MM:SS](https://www.youtube.com/watch?v=VIDEO_ID&t=Xs) — how the tune is used in the lesson (vehicle for a specific concept, analysed, performed, etc.)
+- **[[../videos/VIDEO_ID|Video Title]]** [▶ MM:SS](https://www.youtube.com/watch?v=VIDEO_ID&t=Xs) — how it's used in the lesson.
 ```
 
 ### Persona page
@@ -94,38 +120,38 @@ type: persona
 role: pianist | saxophonist | guitarist | drummer | etc.
 era: swing | bebop | hard-bop | post-bop | fusion | contemporary
 tags: [tag1, tag2]
+sources: [VIDEO_ID]
 ---
 
 # Person Name
 
-Brief biographical description: instrument, era, what they are known for musically, why they matter in the jazz tradition. 3–5 sentences. Factual — do not invent details you are uncertain about.
+3–5 factual sentences: instrument, era, contribution to jazz. Do not invent details.
 
 ## Appearances
 
-- **[[../videos/VIDEO_ID|Video Title]]** [▶ MM:SS](https://www.youtube.com/watch?v=VIDEO_ID&t=Xs) — context in which they are mentioned (technique cited, inspiration, recording referenced, etc.)
+- **[[../videos/VIDEO_ID|Video Title]]** [▶ MM:SS](https://www.youtube.com/watch?v=VIDEO_ID&t=Xs) — context in which they are mentioned.
 ```
+
+Note: persona summaries are biographical facts that don't need the "may be refined" caveat — they're either right or wrong, not context-dependent.
 
 ---
 
-## Appearances entry format (critical)
-
-Every Appearances bullet must follow this exact format:
+## Appearances entry format (required)
 
 ```
-- **[[../videos/VIDEO_ID|Video Title]]** [▶ MM:SS](https://www.youtube.com/watch?v=VIDEO_ID&t=Xs) — description of context
+- **[[../videos/VIDEO_ID|Video Title]]** [▶ MM:SS](https://www.youtube.com/watch?v=VIDEO_ID&t=Xs) — one sentence describing how this entity appears in the video
 ```
 
-- The `[▶ MM:SS]` link points to the first moment in the video where this entity is meaningfully mentioned.
-- The timestamp must come from the TSV (Step 2 above) — never invented.
-- The description should be a single sentence summarising how the entity is used in that video.
+- `[▶ MM:SS]` points to the first meaningful mention in the TSV — never invented.
+- Description: one sentence, specific to this video's framing.
 
 ---
 
 ## Rules
 
-- **Do not analyse specific notes or fingerings** in any entity page.
-- **Relative paths** for video links must be `../videos/VIDEO_ID` (one level up from the entity folder).
-- **Only write what you can source** from the video notes. For the summary sections, you may draw on general knowledge, but flag uncertainty rather than invent.
-- **Persona summaries** should be factual and neutral — not hagiographic.
-- **One file per entity** — if two videos reference the same concept, there is still only one concept page; add a second bullet to Appearances.
-- After creating/updating pages, report back: how many pages were created, how many updated, and list any entities that were skipped (e.g. because they were too vague to warrant a standalone page).
+- **Do not analyse specific notes or fingerings.**
+- **Relative paths** for video links: `../videos/VIDEO_ID` (one level up from entity folder).
+- **Only write what you can source.** For summaries, general knowledge is fine, but flag uncertainty rather than invent.
+- **One file per entity** — multiple videos → one page with multiple Appearances bullets.
+- **Update `sources`** in frontmatter whenever a page is revised or appended.
+- Report back: pages created, pages updated (summary revised vs. bullet-only), pages skipped.

@@ -122,13 +122,17 @@ Multiple paragraphs per section are fine. Each paragraph starts with its timesta
 
 ---
 
-## Step 6 — Create entity pages
+## Step 6 — Create or update entity pages
+
+**Important: concept summaries improve over time.** A description written from one video reflects only one framing. If a new video offers a clearer, broader, or corrective view of a concept, update the summary — don't just append.
 
 For each entity collected in Step 4, check whether its page already exists.
 
-**If it does not exist → create it now.** Use the templates below.
+**If it does not exist → create it now.** Use the templates below. Set `sources: [VIDEO_ID]` in frontmatter. Add the line *"Based on N video(s). Description may be refined as more sources are added."* below the summary for concept and song pages (not persona pages).
 
-**If it already exists → append a new bullet to its `## Appearances` section.**
+**If it already exists → do two things:**
+1. Read the existing summary. If this video frames the concept more completely or accurately, revise the summary and add this VIDEO_ID to the `sources` list.
+2. Append a new bullet to `## Appearances`. Do not remove existing bullets.
 
 ### Appearances entry format
 
@@ -144,12 +148,15 @@ The `[▶ MM:SS]` timestamp comes from the entity's first-mention `start_ms` rec
 ---
 type: concept
 tags: [tag1, tag2]
+sources: [VIDEO_ID]
 ---
 
 # Concept Name
 
 2–5 sentence explanation: what this concept is, why it matters, how it relates to jazz.
 No note names or fingerings.
+
+*Based on 1 video. Description may be refined as more sources are added.*
 
 ## Appearances
 
@@ -163,11 +170,14 @@ No note names or fingerings.
 type: song
 composer: Name
 tags: [jazz-standard]
+sources: [VIDEO_ID]
 ---
 
 # Song Title
 
 2–4 sentence description: composer, era, what makes it harmonically notable.
+
+*Based on 1 video. Description may be refined as more sources are added.*
 
 ## Appearances
 
@@ -182,6 +192,7 @@ type: persona
 role: pianist | saxophonist | etc.
 era: bebop | post-bop | etc.
 tags: [tag1, tag2]
+sources: [VIDEO_ID]
 ---
 
 # Person Name
