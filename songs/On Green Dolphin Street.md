@@ -2,6 +2,7 @@
 type: song
 composer: Bill and Buddy DeSylva
 tags: [jazz-standard]
+sources: [DoOTYEpdYJM, EQJj3hgzTkQ]
 ---
 
 # On Green Dolphin Street
@@ -11,3 +12,4 @@ On Green Dolphin Street is a jazz standard from the film of the same name. The B
 ## Appearances
 
 - **[[../videos/DoOTYEpdYJM|What Are Sugar Chords?]]** [▶ 00:53](https://www.youtube.com/watch?v=DoOTYEpdYJM&t=53s) — bars 9–12 of the B section used as the harmonic framework for exploring and demonstrating how to apply and combine closed voicings, drop two, and drop three structures to create sophisticated textures
+- **[[../videos/EQJj3hgzTkQ|What Are Block Chords?]]** [▶ 2:00](https://www.youtube.com/watch?v=EQJj3hgzTkQ&t=120s) — one of six jazz standards selected for demonstrating Locked Hands and Drop Two voicing applications throughout the course
