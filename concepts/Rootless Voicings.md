@@ -1,6 +1,7 @@
 ---
 type: concept
 tags: [voicing-systems, ensemble-playing]
+sources: [-ktm1Q0odH8, hiQdy_q-F2U]
 ---
 
 # Rootless Voicings
@@ -10,3 +11,4 @@ Rootless voicings omit the root of the chord, creating complementary accompanime
 ## Appearances
 
 - **[[../videos/-ktm1Q0odH8|Voicing A Standard]]** [▶ 08:20](https://www.youtube.com/watch?v=-ktm1Q0odH8&t=500s) — detailed exploration of rootless left-hand voicings built on fourths and clusters for rhythm section accompaniment
+- **[[../videos/hiQdy_q-F2U|5 Chords EVERYONE Plays (And You Should Too)]]** [▶ 03:23](https://www.youtube.com/watch?v=hiQdy_q-F2U&t=203s) — comprehensive lesson on five essential rootless voicing types (major seven, dominant seven, minor seven, half diminished, diminished seven) designed for two-handed comping with rhythm sections

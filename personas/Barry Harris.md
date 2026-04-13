@@ -3,7 +3,7 @@ type: persona
 role: pianist, educator
 era: bebop, post-bop
 tags: [educator, harmonic-innovator]
-sources: [DoOTYEpdYJM, orCNZHqTX90, d25eCK8T5os, RK2eqkh4Yko]
+sources: [DoOTYEpdYJM, orCNZHqTX90, d25eCK8T5os, RK2eqkh4Yko, hWCX9-DnMG0]
 ---
 
 # Barry Harris
@@ -16,3 +16,4 @@ Barry Harris is a legendary jazz pianist and educator whose pedagogical contribu
 - **[[../videos/orCNZHqTX90|4 Basic Chord Voicings Every Jazz Musician Should Know]]** [▶ 05:50](https://www.youtube.com/watch?v=orCNZHqTX90&t=350s) — referenced for the sixth diminished scale framework as an approach to understanding chromatic alterations and harmonic color
 - **[[../videos/d25eCK8T5os|The Greatest Theory Lesson of All Time]]** [▶ 13:05](https://www.youtube.com/watch?v=d25eCK8T5os&t=785s) — his chromatic scale techniques are referenced as appearing in Donnelly, particularly in the passage work between harmonic changes
 - **[[../videos/RK2eqkh4Yko|How To Play Tunes Using Small Chords]]** [▶ 06:48](https://www.youtube.com/watch?v=RK2eqkh4Yko&t=408s) — recognized as the creator of the small six-chord pedagogical framework and organizational language; his approach transforms practical tune playing by simplifying voicing choices to six core shapes
+- **[[../videos/hWCX9-DnMG0|7 SICK Chord Substitutions]]** [▶ 15:00](https://www.youtube.com/watch?v=hWCX9-DnMG0&t=900s) — quoted as expressing concern that the flat 3 diminished chord is underexplored in contemporary jazz, noting that it should not have fallen out of favor given its beauty and historical prevalence

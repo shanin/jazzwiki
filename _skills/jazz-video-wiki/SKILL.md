@@ -229,6 +229,7 @@ Rules:
 - Never invent or estimate timestamps — every `[MM:SS]` must come from a TSV row's `start_ms`.
 - Never transcribe specific note names, chord fingerings, or interval sequences.
 - Never invent biographical or musical facts.
+- **Never use backslashes in filenames.** Entity page filenames must use regular spaces (e.g. `Moo chord.md`, not `Moo\ chord.md`). When writing files via Bash, quote paths properly rather than escaping spaces with backslashes.
 
 ---
 
