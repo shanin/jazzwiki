@@ -3,7 +3,7 @@ type: persona
 role: pianist, educator
 era: contemporary
 tags: [educator, open-studio]
-sources: [rEdtUOGCCnU, HZocRkjDZM8, Qbxvt1dXdYY, hiQdy_q-F2U]
+sources: [rEdtUOGCCnU, HZocRkjDZM8, Qbxvt1dXdYY, hiQdy_q-F2U, q-Wb0CsXV6U]
 ---
 
 # Adam Maness
@@ -18,3 +18,4 @@ Adam Maness is a jazz pianist and educator known for his systematic approach to 
 - **[[../videos/HZocRkjDZM8|Why Should I Care About Tritone Subs?]]** [▶ 00:00](https://www.youtube.com/watch?v=HZocRkjDZM8&t=0s) — presenter and instructor providing comprehensive lesson on tritone substitutions, covering definition, applications to any chord, Lydian dominant voicings, and practice methods
 - **[[../videos/Qbxvt1dXdYY|Why Should I Bother Learning Scales?]]** [▶ 00:14](https://www.youtube.com/watch?v=Qbxvt1dXdYY&t=14s) — presenter and instructor teaching the foundational principles of diatonic seventh chords, secondary dominance, and the Mixolydian vs. Phrygian dominant distinction in jazz improvisation
 - **[[../videos/hiQdy_q-F2U|5 Chords EVERYONE Plays (And You Should Too)]]** [▶ 00:00](https://www.youtube.com/watch?v=hiQdy_q-F2U&t=0s) — presenter and instructor teaching five essential rootless chord voicings (major seven, dominant seven, minor seven, half diminished, diminished seven) that form the foundation of jazz piano accompaniment and comping
+- **[[../videos/q-Wb0CsXV6U|Crooked Face Chords]]** [▶ 00:09](https://www.youtube.com/watch?v=q-Wb0CsXV6U&t=9s) — presenter and instructor introducing three harmonic "spicing" techniques (secondary dominance, tritone substitution, Open Studio Moo chord) applied to a basic I-vi-IV-V progression; also references modal interchange (cush chords) as a fourth technique
